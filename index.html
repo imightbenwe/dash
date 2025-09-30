@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dash21 — Ready-to-Operate Micro-SaaS Assets</title>
+    <meta name="description" content="Dash21 builds and sells ready-to-operate Micro-SaaS assets. Built for operators, acquired in days, not months.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #0A0A0A;
+            --color-bg-secondary: #141414;
+            --color-border: #2A2A2A;
+            --color-text: #E0E0E0;
+            --color-text-muted: #888888;
+            --color-text-headings: #FFFFFF;
+            --color-primary: #33FF99;
+            --color-primary-dark: #29CC7A;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            --container-width: 1100px;
+            --border-radius: 8px;
+            --transition-speed: 0.3s ease-in-out;
+            --header-height: 73px;
+        }
+
+        /* --- Reset & Global Styles --- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--header-height);
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        body.mobile-nav-open {
+            overflow: hidden;
+        }
+
+        /* --- Layout --- */
+        .container {
+            width: 100%;
+            max-width: var(--container-width);
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+        
+        /* --- Typography --- */
+        h1, h2, h3 {
+            color: var(--color-text-headings);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 1.5rem; }
+        p { margin-bottom: 1rem; }
+
+        .section-header {
+            max-width: 600px;
+            margin: 0 auto 48px auto;
+            text-align: center;
+        }
+        .section-header h2 { margin-bottom: 12px; }
+        .section-header p {
+            color: var(--color-text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* --- Header --- */
+        .main-header {
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+        }
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-headings);
+            text-decoration: none;
+            z-index: 1001;
+        }
+        .logo span { color: var(--color-primary); }
+        .nav-links a {
+            color: var(--color-text);
+            text-decoration: none;
+            margin-left: 24px;
+            transition: color var(--transition-speed);
+        }
+        .nav-links a:hover { color: var(--color-primary); }
+
+        /* --- Mobile Navigation --- */
+        .mobile-nav-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 10px;
+        }
+        .hamburger-lines {
+            width: 24px;
+            height: 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .hamburger-lines .line {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background: var(--color-text-headings);
+            border-radius: 2px;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+        .mobile-nav-open .hamburger-lines .line1 {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .mobile-nav-open .hamburger-lines .line2 {
+            opacity: 0;
+        }
+        .mobile-nav-open .hamburger-lines .line3 {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+
+        /* --- Hero --- */
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+        }
+        .hero h1 { margin-bottom: 16px; }
+        .hero .subtitle {
+            font-size: 1.25rem;
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+        .hero-ctas {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* --- Buttons --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-decoration: none;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            white-space: nowrap;
+        }
+        .btn svg { width: 16px; height: 16px; }
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: #000;
+        }
+        .btn-primary:hover {
+            background-color: var(--color-primary-dark);
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-text-headings);
+            border-color: var(--color-border);
+        }
+        .btn-secondary:hover {
+            background-color: var(--color-bg-secondary);
+            border-color: var(--color-text-muted);
+            transform: translateY(-2px);
+        }
+        .btn-tertiary {
+            background-color: transparent;
+            color: var(--color-text-muted);
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            border: 1px solid transparent;
+        }
+        .btn-tertiary:hover {
+            background-color: var(--color-bg-secondary);
+            border-color: var(--color-border);
+            color: var(--color-text);
+        }
+
+        /* --- Portfolio Grid --- */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 32px;
+        }
+        .portfolio-card {
+            background-color: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            border-color: #444;
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            gap: 10px;
+        }
+        .card-header h3 { font-size: 1.25rem; line-height: 1.3; }
+        .card-tags {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+        .tag {
+            display: inline-block;
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 99px;
+            white-space: nowrap;
+        }
+        .tag-status { color: #000; background-color: var(--color-primary); }
+        .tag-type-exclusive {
+             color: #E6C36A;
+             background-color: rgba(230, 195, 106, 0.1);
+             border: 1px solid rgba(230, 195, 106, 0.3);
+        }
+        .tag-type-template {
+            color: #7AB2FF;
+            background-color: rgba(122, 178, 255, 0.1);
+            border: 1px solid rgba(122, 178, 255, 0.3);
+        }
+        .tag-stack { font-size: 0.8rem; color: var(--color-text-muted); font-weight: 400; }
+        .card-description {
+            color: var(--color-text-muted);
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+            flex-grow: 1;
+        }
+        .card-highlights { list-style: none; margin-bottom: 24px; }
+        .card-highlights li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+        .card-highlights svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            color: var(--color-primary);
+        }
+        .card-ctas { margin-top: auto; display: flex; flex-wrap: wrap; gap: 12px; }
+        .card-sold-overlay {
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(4px);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius);
+            position: relative;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+        .card-sold-overlay::after {
+            content: 'SOLD';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            font-size: 3rem;
+            font-weight: 700;
+            color: #fff;
+            border: 4px solid #fff;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            opacity: 0.9;
+        }
+
+        /* --- Inclusions & Proof Section --- */
+        .grid-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 32px;
+            text-align: center;
+        }
+        .feature-item svg {
+            width: 32px;
+            height: 32px;
+            color: var(--color-primary);
+            margin-bottom: 16px;
+        }
+        .feature-item h3 { font-size: 1.2rem; margin-bottom: 8px; }
+        .feature-item p { color: var(--color-text-muted); font-size: 0.95rem; margin: 0; }
+
+        /* --- Pricing Tiers --- */
+        .pricing-tiers {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .tier {
+            background-color: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius);
+            padding: 32px;
+        }
+        .tier h3 { color: var(--color-primary); margin-bottom: 8px; }
+        .tier .price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-text-headings);
+            margin-bottom: 16px;
+        }
+        .tier .price span { font-size: 1rem; font-weight: 400; color: var(--color-text-muted); }
+        .tier p { font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 24px; }
+        .tier ul { list-style: none; padding: 0;}
+        .tier li { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; font-size: 0.95rem; }
+        .tier li svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--color-primary); }
+        
+        /* --- CTA Sections --- */
+        .cta-section {
+            background-color: var(--color-bg-secondary);
+            border-radius: var(--border-radius);
+            padding: 60px 40px;
+            text-align: center;
+            border: 1px solid var(--color-border);
+        }
+        .cta-section h2 { margin: 0 auto 16px; max-width: 600px; }
+        .cta-section p { color: var(--color-text-muted); margin: 0 auto 32px; max-width: 500px; }
+        .email-form {
+            display: flex;
+            gap: 10px;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+        .email-form input {
+            flex-grow: 1;
+            padding: 12px 16px;
+            font-size: 1rem;
+            background-color: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius);
+            color: var(--color-text);
+        }
+        .email-form input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(51, 255, 153, 0.2);
+        }
+        .final-cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        /* --- Footer --- */
+        .main-footer {
+            padding: 30px 0;
+            border-top: 1px solid var(--color-border);
+            text-align: center;
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+        .main-footer a { color: var(--color-text-muted); text-decoration: none; }
+        .main-footer a:hover { color: var(--color-primary); }
+
+        /* --- Mobile Optimizations --- */
+        @media (max-width: 768px) {
+            section { padding: 60px 0; }
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .hero { padding: 60px 0; }
+            .hero .subtitle { font-size: 1.1rem; }
+            .section-header p { font-size: 1rem; }
+            .pricing-tiers { grid-template-columns: 1fr; }
+            
+            .mobile-nav-toggle { display: block; }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background-color: var(--color-bg);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 32px;
+                transform: translateX(100%);
+                transition: transform var(--transition-speed);
+                padding-top: var(--header-height);
+            }
+            .mobile-nav-open .nav-links {
+                transform: translateX(0);
+            }
+            .nav-links a {
+                margin-left: 0;
+                font-size: 1.5rem;
+                font-weight: 600;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container { padding: 0 15px; }
+            h1 { font-size: 2.2rem; }
+            .cta-section { padding: 40px 20px; }
+            .email-form {
+                flex-direction: column;
+            }
+            .email-form .btn {
+                width: 100%;
+            }
+            .card-ctas .btn {
+                flex-grow: 1;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- SVG Icons Definition -->
+    <svg width="0" height="0" style="display:none;">
+        <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></symbol>
+        <symbol id="icon-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></symbol>
+        <symbol id="icon-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></symbol>
+        <symbol id="icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></symbol>
+        <symbol id="icon-box" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></symbol>
+        <symbol id="icon-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></symbol>
+        <symbol id="icon-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></symbol>
+        <symbol id="icon-handshake" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 16.5a5 5 0 0 0 5-5V7a2 2 0 0 0-2-2h-1a2 2 0 0 0-2 2v1.5"/><path d="m4 13.5 4-4"/><path d="m8 9.5 4 4"/><path d="M12.5 12.5a5 5 0 0 0 5 5h1.5a2 2 0 0 0 2-2V16a2 2 0 0 0-2-2h-1a2 2 0 0 0-2 2v1.5"/><path d="M9.5 4.5a5 5 0 0 0-5 5V14a2 2 0 0 0 2 2h1.5a2 2 0 0 0 2-2V13a2 2 0 0 0-2-2h-1a2 2 0 0 0-2-2V7.5"/></symbol>
+    </svg>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="#" class="logo">Dash21<span>.</span></a>
+            <nav class="nav-links" id="main-nav">
+                <a href="#portfolio">Portfolio</a>
+                <a href="#contact">Get in Touch</a>
+            </nav>
+            <button class="mobile-nav-toggle" aria-controls="main-nav" aria-expanded="false">
+                <div class="hamburger-lines">
+                    <span class="line line1"></span>
+                    <span class="line line2"></span>
+                    <span class="line line3"></span>
+                </div>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Ready-to-Run Micro-SaaS Assets.</h1>
+                <p class="subtitle">Built for operators. Acquired in days, not months. We build, validate, and package profitable digital assets for direct acquisition.</p>
+                <div class="hero-ctas">
+                    <a href="#portfolio" class="btn btn-primary">View Portfolio</a>
+                    <a href="#contact" class="btn btn-secondary">Book an Intro Call</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Featured Portfolio</h2>
+                    <p>Our current lineup of available, upcoming, and recently sold Micro-SaaS businesses. Each asset is ready for a fast, clean handover.</p>
+                </div>
+
+                <div class="portfolio-grid">
+                    <!-- Card 1: Available Exclusive -->
+                    <div class="portfolio-card">
+                        <div class="card-header">
+                            <h3>Feedback Finch</h3>
+                            <div class="card-tags">
+                                <span class="tag tag-status">For Sale</span>
+                                <span class="tag tag-type-exclusive">Exclusive</span>
+                                <span class="tag-stack">Next.js, Supabase, Stripe</span>
+                            </div>
+                        </div>
+                        <p class="card-description">A plug-and-play user feedback widget that captures and organizes customer insights directly on your site.</p>
+                        <ul class="card-highlights">
+                            <li><svg><use href="#icon-check"></use></svg>One-line install for any website</li>
+                            <li><svg><use href="#icon-check"></use></svg>Stripe integration for subscription revenue</li>
+                            <li><svg><use href="#icon-check"></use></svg>Automated email summaries for admins</li>
+                            <li><svg><use href="#icon-check"></use></svg>Clean, documented codebase</li>
+                        </ul>
+                        <div class="card-ctas">
+                            <a href="#" class="btn btn-primary">Live Demo</a>
+                            <a href="#contact" class="btn btn-secondary">Buy for $18,000</a>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Cutoutify -->
+                    <div class="portfolio-card">
+                        <div class="card-header">
+                            <h3>Cutoutify</h3>
+                            <div class="card-tags">
+                                <span class="tag tag-status">For Sale</span>
+                                <span class="tag tag-type-exclusive">Exclusive</span>
+                                <span class="tag-stack">Next.js, AI API, Stripe</span>
+                            </div>
+                        </div>
+                        <p class="card-description">Turn-key AI background remover SaaS. Zero overhead and ready to monetize from day one via a simple credit system.</p>
+                        <ul class="card-highlights">
+                            <li><svg><use href="#icon-check"></use></svg>Powered by a robust third-party AI API</li>
+                            <li><svg><use href="#icon-check"></use></svg>Stripe integrated for credit-based usage</li>
+                            <li><svg><use href="#icon-check"></use></svg>Built with Next.js for high performance</li>
+                            <li><svg><use href="#icon-check"></use></svg>Zero server costs or overhead</li>
+                        </ul>
+                        <div class="card-ctas">
+                            <a href="https://cutoutify.com/" target="_blank" rel="noopener" class="btn btn-primary">Live Demo</a>
+                            <a href="https://buy.stripe.com/test_bIYg06d1C3jmfSgaEE" target="_blank" rel="noopener" class="btn btn-secondary">Buy for $399</a>
+                            <a href="https://flippa.com/12097698-turn-key-ai-background-remover-saas-zero-overhead-ready-to-monetize-from-day-1" target="_blank" rel="noopener" class="btn-tertiary">Watch on Flippa</a>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Sold -->
+                    <div class="portfolio-card card-sold-overlay">
+                         <div class="card-header">
+                            <h3>Notionlytics</h3>
+                            <div class="card-tags">
+                                <span class="tag tag-type-exclusive">Exclusive</span>
+                                <span class="tag-stack">Next.js, Notion API</span>
+                            </div>
+                        </div>
+                        <p class="card-description">Simple, beautiful analytics for public Notion pages. Track page views, referrers, and more.</p>
+                        <ul class="card-highlights">
+                            <li><svg><use href="#icon-check"></use></svg>Sold in 7 days via direct inquiry</li>
+                            <li><svg><use href="#icon-check"></use></svg>Achieved $350 MRR in first 2 months</li>
+                            <li><svg><use href="#icon-check"></use></svg>Full handover completed in 48 hours</li>
+                        </ul>
+                        <div class="card-ctas">
+                            <a href="#" class="btn btn-primary" style="pointer-events: none;">Not Available</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="inclusions" style="background-color: var(--color-bg-secondary);">
+            <div class="container">
+                 <div class="section-header">
+                    <h2>Operator-Ready By Default</h2>
+                    <p>We don't sell ideas. We deliver complete, transferable assets ready for you to operate and grow from day one.</p>
+                </div>
+                <div class="grid-features">
+                    <div class="feature-item">
+                        <svg><use href="#icon-zap"></use></svg>
+                        <h3>Stripe-Ready</h3>
+                        <p>Pre-configured Stripe integration for immediate revenue collection. Just add your keys.</p>
+                    </div>
+                    <div class="feature-item">
+                        <svg><use href="#icon-box"></use></svg>
+                        <h3>Deploy Scripts</h3>
+                        <p>One-click or single-command deployment scripts for modern hosting platforms like Vercel or Fly.io.</p>
+                    </div>
+                    <div class="feature-item">
+                        <svg><use href="#icon-book"></use></svg>
+                        <h3>Full Documentation</h3>
+                        <p>Clear, concise documentation covering setup, environment variables, and architecture.</p>
+                    </div>
+                    <div class="feature-item">
+                        <svg><use href="#icon-handshake"></use></svg>
+                        <h3>48-Hour Handover</h3>
+                        <p>Guaranteed asset and knowledge transfer within 2 business days of payment clearing.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="proof">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Proven Momentum</h2>
+                    <p>Our process is designed for speed, clarity, and credibility, attracting qualified buyers and ensuring smooth transactions.</p>
+                </div>
+                <div class="grid-features">
+                    <div class="feature-item">
+                        <h3>12+</h3>
+                        <p>Assets Shipped & Sold</p>
+                    </div>
+                     <div class="feature-item">
+                        <h3>Direct & Flippa</h3>
+                        <p>Primary Lead Sources</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>~7 Days</h3>
+                        <p>Avg. Time-to-Acquisition</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>30 Days</h3>
+                        <p>Post-Handover Support Window</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="pricing" style="padding-bottom: 0;">
+             <div class="container">
+                <div class="section-header">
+                    <h2>Simple & Transparent Pricing</h2>
+                    <p>No lengthy negotiations. We offer two clear paths to acquisition: a template license for broad use or an exclusive purchase for full ownership.</p>
+                </div>
+                <div class="pricing-tiers">
+                    <div class="tier">
+                        <h3>Template License</h3>
+                        <p>For developers and studios who want a production-ready foundation to build upon or resell.</p>
+                        <ul>
+                            <li><svg><use href="#icon-check"></use></svg>Full, commented codebase</li>
+                            <li><svg><use href="#icon-check"></use></svg>Perpetual license for unlimited projects</li>
+                            <li><svg><use href="#icon-check"></use></svg>Complete documentation</li>
+                            <li><svg><use href="#icon-check"></use></svg>Not for exclusive ownership</li>
+                        </ul>
+                    </div>
+                    <div class="tier">
+                        <h3>Exclusive Acquisition</h3>
+                        <p>For operators and investors who want to acquire a unique asset with all rights and branding.</p>
+                         <ul>
+                            <li><svg><use href="#icon-check"></use></svg>Everything in Template, plus:</li>
+                            <li><svg><use href="#icon-check"></use></svg>Full IP and domain transfer</li>
+                            <li><svg><use href="#icon-check"></use></svg>Existing customer data (if any)</li>
+                            <li><svg><use href="#icon-check"></use></svg>30 days of dedicated support</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="first-look">
+            <div class="container">
+                <div class="cta-section">
+                    <h2>Get First Look at New Assets</h2>
+                    <p>Join our private mailing list to get notified 48 hours before we list a new asset publicly. No spam, ever.</p>
+                    <form class="email-form" action="#" method="POST">
+                        <input type="email" name="email" placeholder="your-email@domain.com" required>
+                        <button type="submit" class="btn btn-primary">Notify Me</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                 <div class="section-header">
+                    <h2>Ready to Acquire?</h2>
+                    <p>We keep the process simple. Request a one-pager for detailed metrics on a specific asset, or book a 15-minute call to discuss your acquisition goals.</p>
+                </div>
+                <div class="final-cta-buttons">
+                    <a href="mailto:deals@dash21.com?subject=One-Pager Request for [Asset Name]" class="btn btn-secondary">
+                        <svg><use href="#icon-file"></use></svg>
+                        Request One-Pager
+                    </a>
+                    <a href="https://calendly.com/your-username/15min" target="_blank" rel="noopener" class="btn btn-primary">
+                        <svg><use href="#icon-calendar"></use></svg>
+                        Book 15-Min Intro
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Dash21. All rights reserved. A studio for operators.</p>
+        </div>
+    </footer>
+
+    <script>
+        const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+        const mainNav = document.querySelector('#main-nav');
+
+        if (mobileNavToggle) {
+            mobileNavToggle.addEventListener('click', () => {
+                const isExpanded = mobileNavToggle.getAttribute('aria-expanded') === 'true';
+                mobileNavToggle.setAttribute('aria-expanded', !isExpanded);
+                document.body.classList.toggle('mobile-nav-open');
+            });
+        }
+        
+        // Close nav when a link is clicked
+        if (mainNav) {
+            mainNav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    document.body.classList.remove('mobile-nav-open');
+                    mobileNavToggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
+
+    </script>
+</body>
+</html>
+
